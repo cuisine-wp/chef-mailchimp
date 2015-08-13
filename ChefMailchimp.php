@@ -65,8 +65,8 @@ if (!class_exists('PluginIgniter')) {
             $includes = array( 
                 'Classes/Wrappers',      //facades
                 'Classes/Vendors/Mailchimp',
-                'Classes/Admin',
-                'Classes/Front'
+                'Classes/Front',
+                'Classes/Admin'
             );
 
             foreach( $includes as $inc ){

@@ -4,6 +4,7 @@
 
 	use \stdClass;
 	use \ChefMailchimp\Wrappers\AjaxInstance;
+	use \ChefMailchimp\Wrappers\Api;
 
 	class Ajax extends AjaxInstance{
 
@@ -23,12 +24,10 @@
 		 */
 		private function listen(){
 
+			add_action( 'wp_ajax_getLists', function(){
 
-			//boilerplate:
-			add_action( 'wp_ajax_actionName', function(){
-
-				$this->setPostGlobal();
-
+				$lists = Api::getLists();
+				echo json_encode( $lists );
 
 				die();
 

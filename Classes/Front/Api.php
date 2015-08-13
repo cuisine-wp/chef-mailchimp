@@ -21,18 +21,10 @@
 		var $gateway;
 
 
-		/**
-		 * An array holding all api-settings
-		 * 
-		 * @var array
-		 */
-		var $settings;
-
 
 		//init settings and connection before doing anything
 		function __construct(){
 
-			$this->setSettings();
 			$this->setConnection();
 
 		}
@@ -44,9 +36,22 @@
 
 
 		/**
+		 * Subscribe a user
+		 * 
+		 * @param  array $data
+		 * @return bool
+		 */
+		public function subscribeUser( $data ){
+
+			return $this->gateway->call('lists/subscribe', $data );
+
+		}
+
+
+		/**
 		 * Returns an array of lists
 		 * 
-		 * @return [type] [description]
+		 * @return array of mailchimp lists
 		 */
 		public function getLists(){
 
@@ -68,6 +73,9 @@
 		 */
 		private function setConnection(){
 
+
+			$this->apiKey = Settings::get( 'apiKey' );
+
 			if( $this->apiKey ){
 
 				$this->gateway = new MailChimp( $this->apiKey );
@@ -77,28 +85,6 @@
 				//log an error
 
 			}
-
-		}
-
-
-
-		/**
-		 * Set the settings object first
-		 *
-		 * @return void
-		 */
-		private function setSettings(){
-
-			$defaults = array(
-
-						'api_key'	=>	'641b0c128527e6ff414e420207f72b96-us3'
-
-			);
-
-			$this->settings = get_option( 'mailchimp_settings', $defaults );
-
-			if( isset( $this->settings['api_key'] ) )
-				$this->apiKey = $this->settings['api_key'];
 
 		}
 
