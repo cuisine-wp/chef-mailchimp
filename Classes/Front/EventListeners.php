@@ -1,6 +1,6 @@
 <?php
 
-	namespace ChefMailchimp\Frontend;
+	namespace ChefMailchimp\Front;
 
 	use \Cuisine\Utilities\Url;
 	use \Cuisine\Wrappers\Route;
@@ -27,10 +27,14 @@
 		 */
 		private function listen(){
 
+			add_action( 'form_submitted', function( $form, $entry ){
+
+				Subscription::make( $form, $entry );
+
+			}, 100, 2 );
+
 		}
-
-
 
 	}
 
-	\ChefMailchimp\Frontend\EventListeners::getInstance();
+	\ChefMailchimp\Front\EventListeners::getInstance();
