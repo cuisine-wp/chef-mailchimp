@@ -31,19 +31,21 @@
 		 */
 		private function formPanel(){
 
+			if( Settings::get( 'apiKey' ) ){
 
-			$icon = Url::plugin( 'chef-mailchimp/Assets/images/icon.png', false );
-			$fields = $this->getPanelFields();
-			$options = array(
-
-				'icon' => $icon,
-				'content' => 'Stel hier de opties voor je Mailchimp koppeling in.'
-
-			);
-
-
-			FormPanel::make( 'mailchimp', 'Mailchimp', $options )->set( $fields );
+				$icon = Url::plugin( 'chef-mailchimp/Assets/images/icon.png', false );
+				$fields = $this->getPanelFields();
+				$options = array(
 	
+					'icon' => $icon,
+					'content' => 'Stel hier de opties voor je Mailchimp koppeling in.'
+	
+				);
+	
+				FormPanel::make( 'mailchimp', 'Mailchimp', $options )->set( $fields );
+	
+			}
+
 		}
 
 

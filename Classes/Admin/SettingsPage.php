@@ -31,23 +31,21 @@
 		 */
 		private function settingsPage(){
 
-			$fields = $this->getSettingsFields();
 
+			$fields = $this->getSettingsFields();
 			$options = array(
 				'parent'		=> 'form',
 				'menu_title'	=> 'Mailchimp'
 			);
-
-
+	
+	
 			SettingsPage::make(
-
+	
 				'Mailchimp instellingen', 
 				'mc-settings', 
 				$options
-
+	
 			)->set( $fields );
-
-
 
 		}
 
@@ -117,18 +115,23 @@
 		 */
 		private function getLists(){
 
-			$lists = Api::getLists();
-			if( $lists ){
+			if( Settings::get( 'apiKey' ) ){
+				
+				$lists = Api::getLists();
+				if( $lists ){
 			
-				$lists = $lists['data'];
-				$lists = array_combine( 
+					$lists = $lists['data'];
+					$lists = array_combine( 
 								Sort::pluck( $lists, 'id' ),
 								Sort::pluck( $lists, 'name' )
-				);
-			}
+					);
+				}
 			
-			return $lists;
+				return $lists;
 
+			}
+
+			return false;
 		}
 
 
