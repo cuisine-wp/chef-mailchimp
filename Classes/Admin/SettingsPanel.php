@@ -7,12 +7,12 @@
 	use \Cuisine\Utilities\Session;
 	use \Cuisine\Wrappers\Field;
 	use \Cuisine\Wrappers\SettingsPage;
-	use \ChefForms\Wrappers\FormPanel;
+	use \ChefForms\Wrappers\SettingsPanel;
 	use \ChefMailchimp\Wrappers\Api;
 	use \ChefMailchimp\Front\Settings;
 	use \ChefMailchimp\Wrappers\StaticInstance;
 
-	class FormPanelBuilder extends StaticInstance{
+	class SettingsPanelBuilder extends StaticInstance{
 
 		/**
 		 * Init admin events & vars
@@ -39,11 +39,10 @@
 	
 					'icon' => $icon,
 					'content' => 'Stel hier de opties voor je Mailchimp koppeling in.'
-	
+
 				);
-	
-				FormPanel::make( 'mailchimp', 'Mailchimp', $options )->set( $fields );
-	
+		
+				SettingsPanel::make( 'mailchimp', 'Mailchimp', $options )->set( $fields );	
 			}
 
 		}
@@ -148,4 +147,4 @@
 	}
 
 	if( is_admin() )
-		\ChefMailchimp\Admin\FormPanelBuilder::getInstance();
+		\ChefMailchimp\Admin\SettingsPanelBuilder::getInstance();
