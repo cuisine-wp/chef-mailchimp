@@ -33,6 +33,37 @@
 
 			}, 100, 2 );
 
+
+			//register the field-types:
+			add_filter( 'chef_forms_field_types', function( $types ){
+
+				$types['mc_checkbox'] = array(
+						'name'	=> 'Nieuwsbrief check',
+						'class' => 'ChefMailchimp\\Hooks\\CheckboxField'
+				);
+
+				$types['mc_select'] = array(
+						'name'	=> 'Nieuwsbrief lijst-select',
+						'class' => 'ChefMailchimp\\Hooks\\SelectField'
+				);
+
+				return $types;
+
+			});
+
+			//add the field types to the advanced metabox:
+			add_filter( 'chef_forms_advanced_fields', function( $fields ){
+
+				$fields[] = 'mc_checkbox';
+				$fields[] = 'mc_select';
+
+				return $fields;
+
+			});
+
+
+
+
 		}
 
 	}

@@ -66,6 +66,7 @@ if (!class_exists('PluginIgniter')) {
                 'Classes/Wrappers',      //facades
                 'Classes/Vendors/Mailchimp',
                 'Classes/Front',
+                'Classes/Hooks',
                 'Classes/Admin'
             );
 

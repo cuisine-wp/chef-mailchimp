@@ -57,13 +57,15 @@
 
 
 			//get the mailchimp lists:
-			$lists = $this->getLists();
+			$lists = Api::getListArray();
+			$label = 'Meld inzending automatisch aan bij mailchimp';
+			$label .= '<br/><small>( anders dien je aan het formulier een nieuwsbrief-vinkje toe te voegen )</small>';
 
 			return array(
 
 				Field::checkbox( 
 					'mc_to_mailchimp',
-					'Meld inzending aan bij mailchimp',
+					$label,
 					array(
 						'defaultValue'	=> 'false'
 					)
@@ -117,28 +119,6 @@
 
 
 			);
-
-		}
-
-
-		/**
-		 * Returns a list of active mailchimp mailinglists
-		 * 
-		 * @return array
-		 */
-		private function getLists(){
-
-			$lists = Api::getLists();
-			if( $lists ){
-			
-				$lists = $lists['data'];
-				$lists = array_combine( 
-								Sort::pluck( $lists, 'id' ),
-								Sort::pluck( $lists, 'name' )
-				);
-			}
-			
-			return $lists;
 
 		}
 

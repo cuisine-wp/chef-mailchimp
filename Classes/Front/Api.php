@@ -59,6 +59,30 @@
 
 		}
 
+		/**
+		 * Return key-value pairs of list ID's and names
+		 * 
+		 * @return array of mailchimp lists
+		 */
+		public function getListArray(){
+
+			$lists = Api::getLists();
+			if( $lists ){
+			
+				$lists = $lists['data'];
+				$lists = array_combine( 
+								Sort::pluck( $lists, 'id' ),
+								Sort::pluck( $lists, 'name' )
+				);
+
+				return $lists;
+			
+			}
+			
+			return array();
+		}
+
+
 
 
 		/*=============================================================*/

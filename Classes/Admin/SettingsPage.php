@@ -59,7 +59,7 @@
 		private function getSettingsFields(){
 
 			//get the mailchimp lists:
-			$lists = $this->getLists();
+			$lists = Api::getListArray();
 
 			//create the fields array:
 			$fields = array(
@@ -91,7 +91,7 @@
 			);
 
 			//only add the list-selector if there are actually lists:
-			if( $lists ){
+			if( !empty( $lists ) ){
 
 				$fields[1] = Field::select(
 					'defaultList',
@@ -108,31 +108,7 @@
 
 		}
 
-		/**
-		 * Returns a list of active mailchimp mailinglists
-		 * 
-		 * @return array
-		 */
-		private function getLists(){
-
-			if( Settings::get( 'apiKey' ) ){
-				
-				$lists = Api::getLists();
-				if( $lists ){
-			
-					$lists = $lists['data'];
-					$lists = array_combine( 
-								Sort::pluck( $lists, 'id' ),
-								Sort::pluck( $lists, 'name' )
-					);
-				}
-			
-				return $lists;
-
-			}
-
-			return false;
-		}
+	
 
 
 
