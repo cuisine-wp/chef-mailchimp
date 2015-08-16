@@ -3,6 +3,7 @@
 	namespace ChefMailchimp\Front;
 
 	use Drewm\MailChimp;
+	use Cuisine\Utilities\Sort;
 
 	class Api {
 
