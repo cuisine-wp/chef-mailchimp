@@ -47,6 +47,8 @@
 			if( $this->gateway )
 				return $this->gateway->call('lists/subscribe', $data );
 
+			return false;
+
 		}
 
 
@@ -60,6 +62,7 @@
 			if( $this->gateway )	
 				return $this->gateway->call( 'lists/list' );
 
+			return false;
 		}
 
 		/**
