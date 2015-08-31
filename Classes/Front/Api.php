@@ -44,7 +44,8 @@
 		 */
 		public function subscribeUser( $data ){
 
-			return $this->gateway->call('lists/subscribe', $data );
+			if( $this->gateway )
+				return $this->gateway->call('lists/subscribe', $data );
 
 		}
 
@@ -55,8 +56,9 @@
 		 * @return array of mailchimp lists
 		 */
 		public function getLists(){
-
-			return $this->gateway->call( 'lists/list' );
+			
+			if( $this->gateway )	
+				return $this->gateway->call( 'lists/list' );
 
 		}
 
