@@ -39,12 +39,14 @@
 
 				$types['mc_checkbox'] = array(
 						'name'	=> 'Nieuwsbrief check',
-						'class' => 'ChefMailchimp\\Hooks\\CheckboxField'
+						'class' => 'ChefMailchimp\\Hooks\\CheckboxField',
+						'icon'      => 'dashicons-yes'
 				);
 
 				$types['mc_select'] = array(
 						'name'	=> 'Nieuwsbrief lijst-select',
-						'class' => 'ChefMailchimp\\Hooks\\SelectField'
+						'class' => 'ChefMailchimp\\Hooks\\SelectField',
+						'icon'      => 'dashicons-arrow-down'
 				);
 
 				return $types;

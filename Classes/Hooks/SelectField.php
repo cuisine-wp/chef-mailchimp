@@ -2,7 +2,7 @@
 namespace ChefMailchimp\Hooks;
 
 use ChefMailchimp\Wrappers\Api;
-use ChefForms\Builders\Fields\DefaultField;
+use ChefForms\Fields\DefaultField;
 use Cuisine\Wrappers\Field;
 
 class SelectField extends DefaultField{
@@ -31,7 +31,7 @@ class SelectField extends DefaultField{
      */
     public function render(){
 
-        $this->setDefaultValue();
+        $this->setDefaults();
         $this->properties['name'] = 'mc_list_select';
 
         $lists = Api::getListArray();
@@ -57,7 +57,7 @@ class SelectField extends DefaultField{
      * 
      * @return void
      */
-    public function buildPreview(){
+    public function buildPreview( $mainOverview = false ){
 
         $html = '';
 

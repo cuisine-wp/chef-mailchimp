@@ -1,7 +1,7 @@
 <?php
 namespace ChefMailchimp\Hooks;
 
-use ChefForms\Builders\Fields\DefaultField;
+use ChefForms\Fields\DefaultField;
 use Cuisine\Wrappers\Field;
 
 class CheckboxField extends DefaultField{
@@ -30,7 +30,7 @@ class CheckboxField extends DefaultField{
      */
     public function render(){
 
-        $this->setDefaultValue();
+        $this->setDefaults();
         $this->properties['name'] = 'mc_signup';
 
         Field::checkbox(
@@ -51,17 +51,29 @@ class CheckboxField extends DefaultField{
     /**
      * Generate the preview for this field:
      * 
-     * @return void
+     * @return string (html)
      */
-    public function buildPreview(){
+    public function buildPreview( $mainOverview = false ){
 
         $html = '';
 
-        $html .= '<label>'.$this->getLabel().'</label>';
+        $html .= '<span class="single-checkbox-wrapper">';
 
-        $html .= '<span class="field-type">checkbox</span>';
+            $html .= '<input class="preview-input preview-'.esc_attr( $this->type ).'" disabled type="'.esc_attr( $this->type ).'">';
 
-        return $html;
+            $html .= '<label class="preview-label">'.esc_html( $this->getLabel() ).'</label>';
+
+        $html .= '</span>';
+    
+        //do not display these in the lightbox:
+        if( $mainOverview ){
+
+            $html .= $this->getFieldIcon();
+            $html .= $this->previewControls();
+
+        }
+
+        echo $html;
 
     }
 
