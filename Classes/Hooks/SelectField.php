@@ -32,6 +32,8 @@ class SelectField extends DefaultField{
     public function render(){
 
         $this->setDefaults();
+        $this->sanitizeProperties();
+        
         $this->properties['name'] = 'mc_list_select';
 
         $lists = Api::getListArray();
